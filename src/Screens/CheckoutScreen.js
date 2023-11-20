@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
-import {colour, Styles } from '../Styles/Stylesheet';
+import { Styles } from '../Styles/Stylesheet';
 function CheckoutScreen({ navigation }) {
     return (
         <View>

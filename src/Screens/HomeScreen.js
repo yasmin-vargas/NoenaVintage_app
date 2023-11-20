@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native';
-import {colour, Styles } from '../Styles/Stylesheet';
+import {Styles } from '../Styles/Stylesheet';
+import axios from 'axios';
 function HomeScreen({ navigation }) {
     return (
         <View>

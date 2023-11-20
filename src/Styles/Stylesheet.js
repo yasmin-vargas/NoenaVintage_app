@@ -11,7 +11,7 @@ const colour = {
 const Styles = StyleSheet.create({
     padding: {
         padding: 35,
-        paddingTop: Platform.OS === "iOS"? StatusBar.currentHeight : 0,
+        paddingTop: Platform.OS === "ios" ? StatusBar.currentHeight || 20 : StatusBar.currentHeight + 10,
     },
     textStyles: {
         text: {
@@ -19,6 +19,9 @@ const Styles = StyleSheet.create({
             fontSize: 20,
             fontWeight: "500",
             textAlign: "center",
+            padding: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
         },
         heading: {
             color: colour.Black,
@@ -37,6 +40,10 @@ const Styles = StyleSheet.create({
             justifyContent: 'center',
             elevation: 10,
         },
+        labelText: {
+            color: colour.White,
+            fontSize: 14,
+        },
         button: {
             backgroundColor: colour.NoenaGreen,
             padding: 10,
@@ -51,12 +58,14 @@ const Styles = StyleSheet.create({
     },
     tabStyles: {
         tabIcon: {
-            color: colour.NoenaPink,
+            activeColor: colour.NoenaRose,
+            inactiveColor: colour.NoenaGreen,
             size: 30,
         },
         tabLabel: {
-            color: colour.NoenaPink,
-            fontSize: 10,
+            activeColor: colour.NoenaRose,
+            inactiveColor: colour.NoenaGreen,
+            fontSize: 5,
         },
     },
 });

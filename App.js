@@ -7,62 +7,76 @@ import { SimpleLineIcons, Ionicons } from '@expo/vector-icons';
 import ErrorBoundary from 'react-native-error-boundary';
 import HomeScreen from './src/Screens/HomeScreen'
 import VintageCategoryScreen from './src/Screens/VintageCategoryScreen';
+import ReproCategoryScreen from './src/Screens/VintageCategoryScreen';
 import WishListScreen from './src/Screens/WishListScreen';
 import ShoppingBagScreen from './src/Screens/ShoppingBagScreen';
 import AccountScreen from './src/Screens/AccountScreen';
-import {colour, Styles } from './src/Styles/Stylesheet';
+import {Styles } from './src/Styles/Stylesheet';
 
 const Tab = createMaterialBottomTabNavigator();
-const VintageCategoryStack = createStackNavigator();
+const SearchStack = createStackNavigator();
+const MyAccountStack = createStackNavigator();
 
 function TabNavigator() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      activeColor={Styles.tabStyles.tabLabel.activeColor}
+      inactiveColor={Styles.tabStyles.tabLabel.inactiveColor}
+    >
       <Tab.Screen name="Home" component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <SimpleLineIcons name="home" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <SimpleLineIcons name="home" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
           ),
         }} />
-      <Tab.Screen name="Categories" component={VintageCategoryStackNavigator}
+      <Tab.Screen name="Search" component={SearchStackNavigator}
         options={{
-          tabBarLabel: 'Category',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="ios-search" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
+          tabBarLabel: 'Search',
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons name="ios-search" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
           ),
         }} />
-      <Tab.Screen name="WishList" component={WishListScreen}
+      <Tab.Screen name="Wish List" component={WishListScreen}
         options={{
            tabBarLabel: 'WishList',
-           tabBarIcon: ({ color, size }) =>(
-             <Ionicons name="heart-outline" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
+           tabBarIcon: ({ color, size, focused }) =>(
+             <Ionicons name="heart-outline" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
            ),
         }} />
       <Tab.Screen name="Shopping Bag" component={ShoppingBagScreen}
         options={{
             tabBarLabel: 'ShoppingBag',
-            tabBarIcon: ({ color, size }) =>(
-                <SimpleLineIcons name="handbag" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
+            tabBarIcon: ({ color, size, focused }) =>(
+                <SimpleLineIcons name="handbag" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
             ),
         }} />
       <Tab.Screen name="My Account" component={AccountScreen}
         options={{
-             tabBarLabel: 'MyAccount',
-             tabBarIcon: ({ color, size }) =>(
-               <SimpleLineIcons name="user-female" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
+             tabBarLabel: 'Account',
+             tabBarIcon: ({ color, size, focused }) =>(
+               <SimpleLineIcons name="user-female" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
            ),
         }} />
     </Tab.Navigator>
   )
 }
 
-function VintageCategoryStackNavigator() {
+function SearchStackNavigator() {
   return (
-    <VintageCategoryStack.Navigator>
-      <VintageCategoryStack.Screen name="VintageCategory" component={VintageCategoryScreen} />
-    </VintageCategoryStack.Navigator>
+    <SearchStack.Navigator>
+      <SearchStack.Screen name="Vintage Category" component={VintageCategoryScreen} />
+      <SearchStack.Screen name="Repro Category" component={ReproCategoryScreen} />
+    </SearchStack.Navigator>
   )
+}
+
+function MyAccountStackNavigator() {
+    return (
+        <MyAccountStack.Navigator>
+            <MyAccountStack.Screen name="My Account" component={AccountScreen} />
+        </MyAccountStack.Navigator>
+    )
 }
 
 export default function App() {

@@ -19,7 +19,14 @@ function AccountScreen ({ navigation }){
     return(
         <View>
             <Text>My Account</Text>
-            <Text>My Orders: {orderHistory}</Text>
+            <Text>My Orders: </Text>
+            {orderHistory.map(order => (
+                <View key={order.id}>
+                    {/* Display relevant information about each order */}
+                    <Text>Order ID: {order.id}</Text>
+                    {/* Add more details as needed */}
+                </View>
+            ))}
         </View>
     );
 }

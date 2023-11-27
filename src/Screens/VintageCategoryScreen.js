@@ -2,6 +2,7 @@ import CategoryButton from '../Components/Button';
 import { View,Text } from 'react-native';
 import { Styles } from '../Styles/Stylesheet';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 const VintageCategories = [
     'Vintage Day Dresses',

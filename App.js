@@ -6,15 +6,20 @@ import { StatusBar } from 'expo-status-bar';
 import { SimpleLineIcons, Ionicons } from '@expo/vector-icons';
 import ErrorBoundary from 'react-native-error-boundary';
 import HomeScreen from './src/Screens/HomeScreen'
+import LoginScreen from './src/Screens/LoginScreen';
+import SearchScreen from './src/Screens/SearchScreen';
 import VintageCategoryScreen from './src/Screens/VintageCategoryScreen';
 import ReproCategoryScreen from './src/Screens/VintageCategoryScreen';
 import WishListScreen from './src/Screens/WishListScreen';
 import ShoppingBagScreen from './src/Screens/ShoppingBagScreen';
+import CheckoutScreen from './src/Screens/AccountScreen';
 import AccountScreen from './src/Screens/AccountScreen';
-import {Styles } from './src/Styles/Stylesheet';
+import {Styles} from './src/Styles/Stylesheet';
 
 const Tab = createMaterialBottomTabNavigator();
+const HomeStack = createStackNavigator();
 const SearchStack = createStackNavigator();
+const ShoppingBagStack = createStackNavigator();
 const MyAccountStack = createStackNavigator();
 
 function TabNavigator() {
@@ -23,7 +28,7 @@ function TabNavigator() {
       activeColor={Styles.tabStyles.tabLabel.activeColor}
       inactiveColor={Styles.tabStyles.tabLabel.inactiveColor}
     >
-      <Tab.Screen name="Home" component={HomeScreen}
+      <Tab.Screen name="Home" component={HomeStackNavigator}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size, focused }) => (
@@ -44,14 +49,14 @@ function TabNavigator() {
              <Ionicons name="heart-outline" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
            ),
         }} />
-      <Tab.Screen name="Shopping Bag" component={ShoppingBagScreen}
+      <Tab.Screen name="Shopping Bag" component={ShoppingBagStackNavigator}
         options={{
             tabBarLabel: 'ShoppingBag',
             tabBarIcon: ({ color, size, focused }) =>(
                 <SimpleLineIcons name="handbag" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
             ),
         }} />
-      <Tab.Screen name="My Account" component={AccountScreen}
+      <Tab.Screen name="My Account" component={MyAccountStackNavigator}
         options={{
              tabBarLabel: 'Account',
              tabBarIcon: ({ color, size, focused }) =>(
@@ -62,13 +67,31 @@ function TabNavigator() {
   )
 }
 
+function HomeStackNavigator() {
+    return (
+        <HomeStack.Navigator>
+            <HomeStack.Screen name="Home" component={HomeScreen} />
+            <HomeStack.Screen name="Login" component={LoginScreen} />
+        </HomeStack.Navigator>
+    )
+}
 function SearchStackNavigator() {
   return (
     <SearchStack.Navigator>
-      <SearchStack.Screen name="Vintage Category" component={VintageCategoryScreen} />
-      <SearchStack.Screen name="Repro Category" component={ReproCategoryScreen} />
+      <SearchStack.Screen name="Search Category" component={SearchScreen} />
+      <SearchStack.Screen name="VintageCategory" component={VintageCategoryScreen} />
+      <SearchStack.Screen name="ReproCategory" component={ReproCategoryScreen} />
     </SearchStack.Navigator>
   )
+}
+
+function ShoppingBagStackNavigator() {
+    return (
+        <ShoppingBagStack.Navigator>
+            <ShoppingBagStack.Screen name="Shopping Bag" component={ShoppingBagScreen} />
+            <ShoppingBagStack.Screen name="Checkout" component={CheckoutScreen} />
+        </ShoppingBagStack.Navigator>
+    )
 }
 
 function MyAccountStackNavigator() {

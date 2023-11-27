@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Button, Alert } from 'react-native';
 import {Styles } from '../Styles/Stylesheet';
 function WishListScreen({ navigation }) {
@@ -15,8 +15,8 @@ function WishListScreen({ navigation }) {
                 },
                 body: JSON.stringify({
                     stockID: 'stockID',
-                    productName: 'ProductName'
-                    productBrand: 'ProductBrand'
+                    productName: 'ProductName',
+                    productBrand: 'ProductBrand',
                     stockPrice: 'stockPrice',
                     stockColour: 'stockColour',
                     stockSize: 'stockSize',

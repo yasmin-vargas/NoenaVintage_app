@@ -6,12 +6,11 @@ function WishListScreen({ navigation }) {
 
     const addToBag = async () => {
         setLoading(true);
-        try {  // Make a request to your backend API to add the item to the shopping bag
+        try {  // Make a request to your backend API to addToBag
             const response = await fetch('http://127.0.0.1:8080/add-to-bag', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    // Add any other headers needed for authentication or other purposes
                 },
                 body: JSON.stringify({
                     stockID: 'stockID',
@@ -24,16 +23,14 @@ function WishListScreen({ navigation }) {
                 }),
             });
 
-            // Check if the request was successful (status code 2xx)
+            // Check if the request was successful
             if (response.ok) {
                 // Navigate to the ShoppingBagScreen after adding the item
                 navigation.navigate('ShoppingBag');
             } else {
-                // Handle unsuccessful response (e.g., show an error message)
-                Alert.alert('Error', 'Failed to add item to shopping bag');
+                Alert.alert('Error', 'Failed to add item to Shopping Bag');
             }
         } catch (error) {
-            // Handle network errors or other exceptions
             console.error('Error adding item to shopping bag:', error);
             Alert.alert('Error', 'Failed to add item to shopping bag');
         } finally {

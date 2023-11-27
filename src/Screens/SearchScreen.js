@@ -5,9 +5,8 @@ import axios from 'axios';
 const SearchScreen = ({ navigation }) => {
     const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
-        // Fetch categories from your API endpoint
-        axios.get('http://127.0.0.1:8000/category')
+    useEffect(() => {  // Fetch categories from your API endpoint
+        axios.get('http://127.0.0.1:8080/categories')
             .then(response => {
                 setCategories(response.data);
             })
@@ -16,29 +15,45 @@ const SearchScreen = ({ navigation }) => {
             });
     }, []);
 
-    const organizeCategories = (categories, parentCategory = null) => {
-        return categories
-            .filter(category => category.parentCategory === parentCategory)
-            .map(category => ({
-                ...category,
-                subcategories: organizeCategories(categories, category.categoryID),
-            }));
+    const organiseCategories = async (categories, parentCategory = null) => {
+        const organisedCategories = [];
+        for (const category of categories) {
+            if (category.parentCategory === parentCategory) {
+                const subcategories = await fetchSubcategories(category.categoryName);
+                organisedCategories.push({
+                    ...category,
+                    subcategories: await organiseCategories(subcategories, category.categoryName),
+                });
+            }
+        }
+        return organisedCategories;
     };
 
     const renderCategories = (categoryList) => {
         return categoryList.map((category) => (
             <View key={category.categoryID}>
-                <TouchableOpacity onPress={() => handleCategoryPress(category)}>
-                    <Text>{category.categoryName}</Text>
-                </TouchableOpacity>
+                {category.categoryName === 'Vintage' && (
+                    <TouchableOpacity onPress={() => navigation.navigate('VintageCategoryScreen')}>
+                        <Text>{category.categoryName}</Text>
+                    </TouchableOpacity>
+                )}
+                {category.categoryName === 'Repro' && (
+                    <TouchableOpacity onPress={() => navigation.navigate('ReproCategoryScreen')}>
+                        <Text>{category.categoryName}</Text>
+                    </TouchableOpacity>
+                )}
                 {category.subcategories && renderCategories(category.subcategories)}
             </View>
         ));
     };
 
     const handleCategoryPress = (category) => {
-        // Implement navigation or other actions based on the selected category
-        console.log(`Selected category: ${category.categoryName}`);
+        // Navigate to the appropriate category screen based on the selected category
+        if (category.categoryName === 'Vintage') {
+            navigation.navigate('VintageCategoryScreen');
+        } else if (category.categoryName === 'Repro') {
+            navigation.navigate('ReproCategoryScreen');
+        }
     };
 
     return (

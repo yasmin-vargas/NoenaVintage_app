@@ -4,22 +4,30 @@ import axios from 'axios';
 
 const CategoryScreen = ({ route, navigation }) => {
     const { category } = route.params;
-    const [categories, setCategories] = useState([]);
+    const [products, setProducts] = useState([]);
 
-    useEffect(() => {  // Fetch subcategories for the selected category
-        axios.get(`http://127.0.0.1:8080/products/${category}`)
+    useEffect(() => {  // Fetch products for the selected category
+        axios.get(`http://127.0.0.1:8080/products/category/${category}`)
             .then(response => {
-                setSubcategories(response.data);
+                setProducts(response.data);
             })
             .catch(error => {
                 console.error(`Error fetching products for ${category}:`, error);
             });
     }, [category]);
+    const handleCategoryPress = (category) => {
+        // Navigate to ProductScreen
+        navigation.navigate('ProductScreen', { ProductScreen });
+    };
 
     return (
         <View>
             <Text>{category}</Text>
-            {categories.map((category) => (
+            {/* Map over the fetched products */}
+            {products.map((product) => (
+                <TouchableOpacity key={product.id} onPress={() => handleProductPress(product)}>
+                    <Text>{product.name}</Text>
+                </TouchableOpacity>
             ))}
         </View>
     );

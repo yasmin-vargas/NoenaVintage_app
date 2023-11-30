@@ -68,5 +68,10 @@ const Styles = StyleSheet.create({
             fontSize: 5,
         },
     },
+    imageStyle:{
+        width: 100,
+        height: 100,
+        marginRight: 10,
+    }
 });
 export {colour, Styles};

@@ -1,4 +1,4 @@
-import MapView, { Marker } from 'react-native-maps';
+/* import MapView, { Marker } from 'react-native-maps';
 const Map = () => {
     const [selectedGLSPoint, setSelectedGLSPoint] = useState(null);
 
@@ -28,3 +28,5 @@ const Map = () => {
 };
 
 export default Map;
+
+ */

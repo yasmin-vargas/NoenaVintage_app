@@ -9,10 +9,11 @@ import HomeScreen from './src/Screens/HomeScreen'
 import LoginScreen from './src/Screens/LoginScreen';
 import SearchScreen from './src/Screens/SearchScreen';
 import VintageScreen from './src/Screens/VintageScreen';
-import ReproCategoryScreen from './src/Screens/VintageScreen';
+import ReproScreen from './src/Screens/ReproScreen';
+import CategoryScreen from './src/Screens/CategoryScreen';
 import WishListScreen from './src/Screens/WishListScreen';
 import ShoppingBagScreen from './src/Screens/ShoppingBagScreen';
-import CheckoutScreen from './src/Screens/AccountScreen';
+import CheckoutScreen from './src/Screens/CheckoutScreen';
 import AccountScreen from './src/Screens/AccountScreen';
 import {Styles} from './src/Styles/Stylesheet';
 
@@ -80,8 +81,9 @@ function SearchStackNavigator() {
   return (
     <SearchStack.Navigator>
       <SearchStack.Screen name="Search Category" component={SearchScreen} />
-      <SearchStack.Screen name="VintageCategory" component={VintageScreen} />
-      <SearchStack.Screen name="ReproCategory" component={ReproCategoryScreen} />
+      <SearchStack.Screen name="Vintage" component={VintageScreen} />
+      <SearchStack.Screen name="Repro" component={ReproScreen} />
+      <SearchStack.Screen name="Category" component={CategoryScreen} />
     </SearchStack.Navigator>
   )
 }

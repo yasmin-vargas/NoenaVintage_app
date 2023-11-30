@@ -37,28 +37,28 @@ function VintageScreen({ navigation }) {
                 <CategoryButton
                     key={vintageCategory.id}
                     text={vintageCategory.name}
-                    onPress={() => handleCategoryPress(vintageCategory)}}
+                    onPress={() => handleCategoryPress(vintageCategory)}
                 />
             ))}
             {vtgDressJacketSets.map((vintageCategory) => (
                 <CategoryButton
                     key={vintageCategory.id}
                     text={vintageCategory.name}
-                    onPress={() => handleCategoryPress(vintageCategory)}}
+                    onPress={() => handleCategoryPress(vintageCategory)}
                 />
             ))}
             {vtgCocktailDresses.map((vintageCategory) => (
                 <CategoryButton
                     key={vintageCategory.id}
                     text={vintageCategory.name}
-                    onPress={() => handleCategoryPress(vintageCategory)}}
+                    onPress={() => handleCategoryPress(vintageCategory)}
                 />
             ))}
             {vtgWeddingDresses.map((vintageCategory) => (
                 <CategoryButton
                     key={vintageCategory.id}
                     text={vintageCategory.name}
-                    onPress={() => handleCategoryPress(vintageCategory)}}
+                    onPress={() => handleCategoryPress(vintageCategory)}
                 />
             ))}
         </View>

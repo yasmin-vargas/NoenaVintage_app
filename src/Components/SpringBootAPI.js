@@ -1,5 +1,5 @@
 
-const SpringBootAPI = 'http://127.0.0.1:8080';
+/* const SpringBootAPI = 'http://127.0.0.1:8080';
 
 // Example: Fetch data from the API
 const fetchData = async () => {
@@ -11,3 +11,5 @@ const fetchData = async () => {
         console.error('Error fetching data:', error);
     }
 };
+
+ */

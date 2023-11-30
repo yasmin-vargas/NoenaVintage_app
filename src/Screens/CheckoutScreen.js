@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { Styles } from '../Styles/Stylesheet';
-import Shipping from '.Components/ShippingAPI';
-import Map from '.Components/GoogleMaps';
+import Shipping from '../Components/ShippingAPI';
+import Map from '../Components/GoogleMapsAPI';
 
 function CheckoutScreen({ navigation }) {
     const [shippingRates, setShippingRates] = useState([]);

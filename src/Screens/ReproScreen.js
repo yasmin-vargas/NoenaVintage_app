@@ -36,28 +36,28 @@ function ReproScreen({ navigation }) {
                 <CategoryButton
                     key={reproCategory.id}
                     text={reproCategory.name}
-                    onPress={() => /* Handle button press or navigation here */}
+                    onPress={() => handleCategoryPress(reproCategory)}
                 />
             ))}
             {reproLingerie.map((reproCategory) => (
                 <CategoryButton
                     key={reproCategory.id}
                     text={reproCategory.name}
-                    onPress={() => /* Handle button press or navigation here */}
+                    onPress={() => handleCategoryPress(reproCategory)}
                 />
             ))}
             {reproAccessories.map((reproCategory) => (
                 <CategoryButton
                     key={reproCategory.id}
                     text={reproCategory.name}
-                    onPress={() => /* Handle button press or navigation here */}
+                    onPress={() => handleCategoryPress(reproCategory)}
                 />
             ))}
             {reproShoes.map((reproCategory) => (
                 <CategoryButton
                     key={reproCategory.id}
                     text={reproCategory.name}
-                    onPress={() => /* Handle button press or navigation here */}
+                    onPress={() => handleCategoryPress(reproCategory)}
                 />
             ))}
         </View>

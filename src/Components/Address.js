@@ -1,3 +1,5 @@
+/*
+
 // Assuming you have a function to fetch addresses from your database
 const fetchAddressesFromDatabase = async () => {
     // Implement fetching logic
@@ -21,9 +23,12 @@ const mapAddressToShipmondoFormat = (address) => {
 };
 
 // When creating or updating a shipment
-const selectedShippingAddress = /* get selected shipping address from user input or state */;
-const selectedBillingAddress = /* get selected billing address from user input or state */;
 
+ */
+/*
+const selectedShippingAddress = /* get selected shipping address from user input or state */;
+/* const selectedBillingAddress = /* get selected billing address from user input or state */;
+/*
 const shipTo = mapAddressToShipmondoFormat(selectedShippingAddress);
 const billTo = mapAddressToShipmondoFormat(selectedBillingAddress || selectedShippingAddress);
 
@@ -33,4 +38,8 @@ const shipmentData = {
     bill_to: billTo,
 };
 
+ */
+
 // Send shipmentData to Shipmondo
+
+

@@ -1,4 +1,4 @@
-import axios from 'axios';
+/* import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import {View, Text} from 'react-native';
 
@@ -12,7 +12,7 @@ const ShippingAPI = ({ shipmentData }) => {
     useEffect(() => {
         const fetchShippingRates = async () => {
             try {
-                const response = await ShipmondoAPIKe.post('/shipments/rates', shipmentData);
+                const response = await ShipmondoAPIKey.post('/shipments/rates', shipmentData);
                 setShippingRates(response.data);
             } catch (error) {
                 console.error('Error fetching shipping rates:', error);
@@ -29,7 +29,6 @@ const ShippingAPI = ({ shipmentData }) => {
             {shippingRates && (
                 <View>
                     <Text>Shipping rate: {shippingRates.someProperty} EUR</Text>
-                    </Text>
                 </View>
             )}
         </View>
@@ -37,3 +36,5 @@ const ShippingAPI = ({ shipmentData }) => {
 };
 
 export default ShippingAPI;
+
+ */

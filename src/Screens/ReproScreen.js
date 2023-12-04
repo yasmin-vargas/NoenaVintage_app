@@ -10,7 +10,7 @@ function ReproScreen({ navigation }) {
     const [reproShoes, setReproShoes] = useState([])
 
     useEffect(() => {   // Fetch repro categories
-        axios.get('http://127.0.0.1:8080/categories/parent/repro')
+        axios.get('https://noenavintagedk.appspot.com/categories/parent/repro')
             .then(response => {
                 console.log(response);
                 setReproKitchen(response.data.filter(item => item.category === 'Repro Kitchen' || item.category === 'Table Cloth'));

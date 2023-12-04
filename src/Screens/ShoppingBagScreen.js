@@ -7,7 +7,7 @@ function ShoppingBagScreen({ navigation }) {
     useEffect(() => {
         const fetchDataShoppingBag = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:8080/api/shopping-bag`);
+                const response = await fetch(`https://noenavintagedk.appspot.com/api/shopping-bag`);
                 const data = await response.json();
                 console.log('Data from SpringBootAPI:', data);
             } catch (error) {

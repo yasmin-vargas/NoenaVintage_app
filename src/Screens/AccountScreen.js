@@ -7,7 +7,7 @@ function AccountScreen ({ navigation }){
     const [orderHistory, setOrderHistory] = useState([]);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/orders')
+        axios.get('https://noenavintagedk.appspot.com/orders/all-orders')
             .then(response => {
                 setOrderHistory(response.data);
             })

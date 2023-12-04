@@ -7,7 +7,7 @@ function LoginScreen({ navigation }) {
     const [password, setUserPassword] = useState('');
     const handleLogin = async () => {
         try {  // Make a request to your backend API for user authentication
-            const response = await axios.post('http://127.0.0.1:8080/user', {
+            const response = await axios.post('https://noenavintagedk.appspot.com/login/login', {
                 username: username,
                 password: password,
             });
@@ -24,7 +24,7 @@ function LoginScreen({ navigation }) {
     const handleRegister = async () => {
         try{
             //Make a request to backend for user registration
-            const response = await axios.post('http://127.0.0.1:8080/user', {
+            const response = await axios.post('https://noenavintagedk.appspot.com/users', {
                 firstName: firstName,
                 lastName: lastName,
                 birthDate: birthDate,

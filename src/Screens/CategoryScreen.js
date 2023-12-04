@@ -7,7 +7,7 @@ const CategoryScreen = ({ route, navigation }) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {  // Fetch products for the selected category
-        axios.get(`http://127.0.0.1:8080/products/category/${category}`)
+        axios.get(`https://noenavintagedk.appspot.com/products/searchProducts/${category}`)
             .then(response => {
                 setProducts(response.data);
             })

@@ -7,7 +7,7 @@ function WishListScreen({ navigation }) {
     const addToBag = async () => {
         setLoading(true);
         try {  // Make a request to your backend API to addToBag
-            const response = await fetch('http://127.0.0.1:8080/add-to-bag', {
+            const response = await fetch('https://noenavintagedk.appspot.com/add-to-bag', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

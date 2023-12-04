@@ -6,7 +6,7 @@ const SearchScreen = ({ navigation }) => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {  // Fetch categories with parentCategory Vintage or Repro
-        axios.get('http://127.0.0.1:8080/categories/parent/vintage-repro')
+        axios.get('https://noenavintagedk.appspot.com/categories/parent/vintage-repro')
             .then(response => {
                 setCategories(response.data);
             })

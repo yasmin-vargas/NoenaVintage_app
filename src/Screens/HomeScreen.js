@@ -9,7 +9,7 @@ function HomeScreen({ navigation }) {
     useEffect(() => {  // Fetch the newest products from your API
         const fetchNewestProducts = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8080/sortByDateDesc');
+                const response = await axios.get('https://noenavintagedk.appspot.com/sortByDateDesc');
                 setNewestProducts(response.data);
             } catch (error) {
                 console.error('Error fetching newest products:', error);

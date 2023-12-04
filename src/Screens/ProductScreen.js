@@ -10,7 +10,7 @@ const ProductScreen = ({ productId }) => {
         // API call to fetch product details by productId
         const fetchProductDetails = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:8080/api/products/${productId}`);
+                const response = await fetch(`noenavintagedk.appspot.com/api/products/{productId}`);
                 if (!response.ok) {
                     throw new Error(`Failed to fetch product details: ${response.status}`);
                 }

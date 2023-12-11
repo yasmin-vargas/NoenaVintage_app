@@ -1,13 +1,14 @@
-import React from 'react';
-import { View, Text, Button } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Button, Alert } from 'react-native';
 import {Styles } from '../Styles/Stylesheet';
 import axios from 'axios';
 function LoginScreen({ navigation }) {
     const [username, setUsername] = useState('');
     const [password, setUserPassword] = useState('');
+
     const handleLogin = async () => {
         try {  // Make a request to your backend API for user authentication
-            const response = await axios.post('https://noenavintagedk.appspot.com/login/login', {
+            const response = await axios.post('https://noenavintagedk.ew.r.appspot.com/users/login', {
                 username: username,
                 password: password,
             });
@@ -21,33 +22,10 @@ function LoginScreen({ navigation }) {
             Alert.alert('Error', 'Failed to login. Please try again.');
         }
     };
-    const handleRegister = async () => {
-        try{
-            //Make a request to backend for user registration
-            const response = await axios.post('https://noenavintagedk.appspot.com/users', {
-                firstName: firstName,
-                lastName: lastName,
-                birthDate: birthDate,
-                email: email,
-                phone: phone,
-                password: userPassword,
-            });
-            // Check if the registration was successful
-            if (response.data.success) {
-                Alert.alert('Registration successful! you can now login');
-                navigation.navigate('Login');
-            } else {
-                Alert.alert('Registration Failed', response.data.message);
-            }
-        } catch (error) {
-        console.error('Error during registration:', error);
-        Alert.alert('Error', 'Failed to register. Please try again.');
-        }
-    };
 
     return (
-        <View style={Styles.formStyles}>
-            <Text>Welcome, please Sign in below</Text>
+        <View style={Styles.formStyles.container}>
+            <Text style={Styles.textStyles.heading}>Welcome! please sign in</Text>
             <TextInput
                 placeholder="Username"
                 value={username}
@@ -59,9 +37,19 @@ function LoginScreen({ navigation }) {
                 value={password}
                 onChangeText={(text) => setUserPassword(text)}
             />
-            <Button title="Login" onPress={handleLogin} />
-            <Button title="New here? Register an account" onPress={handleRegister} />
+            <TouchableOpacity
+                style={Styles.formStyles.button}
+                onPress={handleLogin}
+            >
+                <Text style={Styles.formStyles.buttonText}>Login</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={Styles.formStyles.button}
+                onPress={() => navigation.navigate('Register')}
+            >
+                <Text style={Styles.formStyles.buttonText}>New here? Register an account</Text>
+            </TouchableOpacity>
         </View>
     );
-};
+}
 export default LoginScreen;

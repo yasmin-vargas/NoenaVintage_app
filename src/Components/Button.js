@@ -1,4 +1,5 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
+import {Styles} from '../Styles/Stylesheet';
 
 const CategoryButton = ({ text, onPress }) => {
     return (

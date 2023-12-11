@@ -11,7 +11,7 @@ function VintageScreen({ navigation }) {
     const [vtgWeddingDresses, setVintageWeddingDresses] = useState([])
 
     useEffect(() => {  // Fetch vintage categories
-        axios.get('https://noenavintagedk.appspot.com/categories/parent/vintage')
+        axios.get('https://noenavintagedk.ew.r.appspot.com/categories/parent/vintage')
             .then(response => {
                 console.log(response);
                 setVintageDayDresses(response.data.filter(item => item.category === 'Day Dresses'));

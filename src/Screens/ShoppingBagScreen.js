@@ -1,30 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
+import {View, ScrollView, Text, Button, TouchableOpacity} from 'react-native';
 import { Styles } from '../Styles/Stylesheet';
+import axios from 'axios';
 
 function ShoppingBagScreen({ navigation }) {
-    // Use useEffect to fetch data when the component mounts
-    useEffect(() => {
-        const fetchDataShoppingBag = async () => {
+    const [bagItems, setBagItems] = useState([]);
+
+    useEffect(() => {  // Fetch bagitems for ShoppingBag based on UserID
+        const fetchShoppingBagItems = async () => {
             try {
-                const response = await fetch(`https://noenavintagedk.appspot.com/api/shopping-bag`);
-                const data = await response.json();
-                console.log('Data from SpringBootAPI:', data);
+                const response = await axios.get(`https://noenavintagedk.ew.r.appspot.com/shoppingbag/bagitems`);
+                setBagItems(response.data);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('Error fetching shopping bag items:', error);
             }
         };
-        fetchDataShoppingBag(); // Call the fetch function
+        fetchShoppingBagItems(); // Call the fetch function
     }, []); // Empty dependency array to run the effect only once when the component mounts
 
     return (
-        <View>
-            <Text>Checkout now</Text>
-            <Button
-                title="Checkout"
+        <ScrollView>
+            <Text style ={Styles.textStyles.text}>See the items in your shopping bag here!</Text>
+            {bagItems.map((item) => (
+                <TouchableOpacity key={item.productID} onPress={() => handleProductPress(item)}>
+                    <View style={Styles.productStyles.container}>
+                        <Text style={Styles.productStyles.productName}>{item.productName}</Text>
+                        <Text style={Styles.productStyles.productBrand}>{item.productBrand}</Text>
+                        <Text style={Styles.productStyles.productPrice}>{item.productPrice}</Text>
+                    </View>
+                </TouchableOpacity>
+            ))}
+            <TouchableOpacity
+                style={Styles.formStyles.button}
                 onPress={() => navigation.navigate('Checkout')}
-            />
-        </View>
+            >
+                <Text style={Styles.formStyles.buttonText}>Checkout</Text>
+            </TouchableOpacity>
+        </ScrollView>
     );
 }
 export default ShoppingBagScreen;

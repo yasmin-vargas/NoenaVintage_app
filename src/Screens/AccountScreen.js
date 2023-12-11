@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Styles } from '../Styles/Stylesheet';
 import axios from 'axios';
 
@@ -7,7 +7,7 @@ function AccountScreen ({ navigation }){
     const [orderHistory, setOrderHistory] = useState([]);
 
     useEffect(() => {
-        axios.get('https://noenavintagedk.appspot.com/orders/all-orders')
+        axios.get('https://noenavintagedk.ew.r.appspot.com/orders/history/1')
             .then(response => {
                 setOrderHistory(response.data);
             })
@@ -18,15 +18,31 @@ function AccountScreen ({ navigation }){
 
     return(
         <View>
-            <Text>My Account</Text>
-            <Text>My Orders: </Text>
-            {orderHistory.map(order => (
-                <View key={order.id}>
-                    {/* Display relevant information about each order */}
-                    <Text>Order ID: {order.id}</Text>
-                    {/* Add more details as needed */}
-                </View>
-            ))}
+            <Text style ={Styles.textStyles.heading}>My Account</Text>
+            <TouchableOpacity
+                style={Styles.formStyles.button}
+                onPress={() => navigation.navigate('Order History')}
+            >
+                <Text style={Styles.formStyles.buttonText}>My Orders</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={Styles.formStyles.button}
+                onPress={() => navigation.navigate('Return History')}
+            >
+                <Text style={Styles.formStyles.buttonText}>My Returns</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={Styles.formStyles.button}
+                onPress={() => navigation.navigate('Personal Information')}
+            >
+                <Text style={Styles.formStyles.buttonText}>My Personal Information</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={Styles.formStyles.button}
+                onPress={() => navigation.navigate('Settings')}
+            >
+                <Text style={Styles.formStyles.buttonText}>My Settings</Text>
+            </TouchableOpacity>
         </View>
     );
 }

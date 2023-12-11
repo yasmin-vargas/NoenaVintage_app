@@ -14,20 +14,19 @@ const Styles = StyleSheet.create({
         paddingTop: Platform.OS === "ios" ? StatusBar.currentHeight || 20 : StatusBar.currentHeight + 10,
     },
     textStyles: {
-        text: {
+        heading: {
             color: colour.Black,
-            fontSize: 20,
+            fontSize: 22,
             fontWeight: "500",
             textAlign: "center",
             padding: 20,
-            alignItems: 'center',
-            justifyContent: 'center',
         },
-        heading: {
+        text: {
             color: colour.Black,
-            fontSize: 25,
+            fontSize: 16,
             fontWeight: "500",
             textAlign: "center",
+            padding: 20,
         },
     },
     imageStyle:{
@@ -35,11 +34,36 @@ const Styles = StyleSheet.create({
         height: 100,
         marginRight: 10,
     },
+    productStyles: {
+        container: {
+            marginTop: 50,
+            alignSelf: 'center',
+            backgroundColor: colour.White,
+            padding: 10,
+            borderRadius: 10,
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        productName: {
+            color: colour.Black,
+            fontSize: 18,
+        },
+        productBrand: {
+            backgroundColor: colour.NoenaGreen,
+            fontSize: 14,
+        },
+        productPrice: {
+            color: colour.Black,
+            fontSize: 14,
+        },
+    },
     formStyles: {
         container: {
-            flex: 1,
-            padding: 20,
+            width: '80%',
+            marginTop: 50,
+            alignSelf: 'center',
             backgroundColor: colour.NoenaRose,
+            padding: 10,
             borderRadius: 10,
             alignItems: 'center',
             justifyContent: 'center',

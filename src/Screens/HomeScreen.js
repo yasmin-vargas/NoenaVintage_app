@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import {View, ScrollView, Text, FlatList, TouchableOpacity, Button} from 'react-native';
 import axios from 'axios';
 import {Styles} from '../Styles/Stylesheet';
 
@@ -9,7 +9,7 @@ function HomeScreen({ navigation }) {
     useEffect(() => {  // Fetch the newest products from your API
         const fetchNewestProducts = async () => {
             try {
-                const response = await axios.get('https://noenavintagedk.appspot.com/sortByDateDesc');
+                const response = await axios.get('https://noenavintagedk.ew.r.appspot.com/products/sortByDateDesc')
                 setNewestProducts(response.data);
             } catch (error) {
                 console.error('Error fetching newest products:', error);
@@ -19,17 +19,15 @@ function HomeScreen({ navigation }) {
     }, []); // Empty dependency array to run the effect only once when the component mounts
 
     return (
-        <View style={Styles.formStyles}>
-            <Text style={Styles.textStyles}>Welcome to Noena Vintage!</Text>
-            {newestProducts.length > 0 && (
-                <View>
+         <ScrollView style={Styles.formStyles}>
+             <Text style={Styles.textStyles.heading}>Welcome to Noena Vintage!</Text>
                     <TouchableOpacity
                         style={Styles.formStyles.button}
                         onPress={() => navigation.navigate('Login')}
                     >
-                        <Text>Login here</Text>
+                        <Text style={Styles.formStyles.buttonText}>Login here</Text>
                     </TouchableOpacity>
-                    <Text>Newest Products:</Text>
+                    <Text style={Styles.textStyles.text}>Newest Products:</Text>
                     <FlatList
                         data={newestProducts}
                         keyExtractor={(item) => item.id.toString()}
@@ -41,11 +39,7 @@ function HomeScreen({ navigation }) {
                             </TouchableOpacity>
                         )}
                     />
-                </View>
-            )}
-            <Text>No products available</Text>
-        </View>
+         </ScrollView>
     );
 }
-
 export default HomeScreen;

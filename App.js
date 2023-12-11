@@ -1,12 +1,13 @@
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { StatusBar } from 'expo-status-bar';
 import { SimpleLineIcons, Ionicons } from '@expo/vector-icons';
 import ErrorBoundary from 'react-native-error-boundary';
 import HomeScreen from './src/Screens/HomeScreen'
 import LoginScreen from './src/Screens/LoginScreen';
+import RegisterScreen from './src/Screens/RegisterScreen';
 import SearchScreen from './src/Screens/SearchScreen';
 import VintageScreen from './src/Screens/VintageScreen';
 import ReproScreen from './src/Screens/ReproScreen';
@@ -15,6 +16,8 @@ import WishListScreen from './src/Screens/WishListScreen';
 import ShoppingBagScreen from './src/Screens/ShoppingBagScreen';
 import CheckoutScreen from './src/Screens/CheckoutScreen';
 import AccountScreen from './src/Screens/AccountScreen';
+import OrderHistoryScreen from './src/Screens/OrderHistoryScreen';
+import ReturnHistoryScreen from './src/Screens/ReturnHistoryScreen';
 import {Styles} from './src/Styles/Stylesheet';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -74,6 +77,7 @@ function HomeStackNavigator() {
         <HomeStack.Navigator>
             <HomeStack.Screen name="Home" component={HomeScreen} />
             <HomeStack.Screen name="Login" component={LoginScreen} />
+            <HomeStack.Screen name="Register" component={RegisterScreen} />
         </HomeStack.Navigator>
     )
 }
@@ -110,6 +114,8 @@ function MyAccountStackNavigator() {
     return (
         <MyAccountStack.Navigator>
             <MyAccountStack.Screen name="My Account" component={AccountScreen} />
+            <MyAccountStack.Screen name="Order History" component={OrderHistoryScreen} />
+            <MyAccountStack.Screen name="Return History" component={ReturnHistoryScreen} />
         </MyAccountStack.Navigator>
     )
 }

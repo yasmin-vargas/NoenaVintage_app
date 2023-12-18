@@ -15,12 +15,12 @@ function ShoppingBagScreen({ navigation }) {
                 console.error('Error fetching shopping bag items:', error);
             }
         };
-        fetchShoppingBagItems(); // Call the fetch function
-    }, []); // Empty dependency array to run the effect only once when the component mounts
+        fetchShoppingBagItems();
+    }, []); // Empty dependency array
 
     return (
-        <ScrollView>
-            <Text style ={Styles.textStyles.text}>See the items in your shopping bag here!</Text>
+        <ScrollView contentContainerStyle={Styles.productStyles.container}>
+            <Text style={Styles.textStyles.text}>See the items in your shopping bag here!</Text>
             {bagItems.map((item) => (
                 <TouchableOpacity key={item.productID} onPress={() => handleProductPress(item)}>
                     <View style={Styles.productStyles.container}>

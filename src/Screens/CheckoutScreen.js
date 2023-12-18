@@ -39,7 +39,7 @@ function CheckoutScreen({ navigation }) {
     };
 
     return (
-        <View style={Styles.formStyles.container}>
+        <View contentContainerStyle={Styles.productStyles.container}>
             {orderPlaced ? ( // Show the message when the order has been placed
                 <View>
                     <Text style={Styles.textStyles.heading}>Thank you for your order!</Text>

@@ -7,7 +7,7 @@ function ReturnHistoryScreen ({ navigation }){
     const [returnHistory, setReturnHistory] = useState([]);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8080/returns/history/{1}')
+        axios.get('http://127.0.0.1:8080/returns/history/1')
             .then(response => {
                 setReturnHistory(response.data);
             })
@@ -17,7 +17,7 @@ function ReturnHistoryScreen ({ navigation }){
     }, []);
 
     return(
-        <View>
+        <View contentContainerStyle={Styles.productStyles.container}>
             <Text style ={Styles.textStyles.heading}>My Returns</Text>
         </View>
     );

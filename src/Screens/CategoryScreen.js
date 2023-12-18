@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, Text, TouchableOpacity, CheckBox } from 'react-native';
 import axios from 'axios';
+import {Styles} from "../Styles/Stylesheet";
 
 // Component to display and handle attribute filters
 function AttributeFilters({ attributeTypes, selectedAttributes, onSelect }) {
@@ -35,21 +36,14 @@ const CategoryScreen = ({ route, navigation }) => {
         fetchAttributes();  // Fetch attributes
     }, [category]);
 
-
     const fetchAttributes = async () => {
         try {
             const response = await axios.get('http://127.0.0.1:8080/attributes/getAllAttributes');
-            setAttributes(response.data); // assuming the response is an array of attributes
+            setAttributes(response.data); // The response should be an array of attributes
         } catch (error) {
             console.error('Error fetching attributes:', error);
         }
     };
-
-    const handleCategoryPress = (category) => {
-        // Navigate to ProductScreen
-        navigation.navigate('ProductScreen', { category });
-    };
-
     const handleAttributeToggle = (attributeType) => {
         setSelectedAttributes((prevSelected) => (
             prevSelected.includes(attributeType)
@@ -65,8 +59,13 @@ const CategoryScreen = ({ route, navigation }) => {
         ))
     ));
 
+    const handleProductPress = (product) => {
+        // Navigate to ProductScreen and pass the selected product
+        navigation.navigate('Product Screen', { product });
+    };
+
     return (
-        <ScrollView>
+        <ScrollView contentContainerStyle={Styles.productStyles.container}>
             <Text>{category}</Text>
             <Text h4>Filter by Attributes</Text>
             <AttributeFilters

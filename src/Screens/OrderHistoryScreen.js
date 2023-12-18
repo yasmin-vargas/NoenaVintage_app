@@ -22,7 +22,7 @@ function OrderHistoryScreen ({ navigation }){
     }, []);
 
     return(
-        <View>
+        <View contentContainerStyle={Styles.productStyles.container}>
             <Text style ={Styles.textStyles.heading}>My Orders:</Text>
             {orderHistory.map(order => (
                 <View key={order.orderNumber}>

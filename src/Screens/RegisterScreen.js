@@ -4,23 +4,25 @@ import { Styles } from '../Styles/Stylesheet';
 import axios from 'axios';
 
 function RegisterScreen({ navigation }) {
+    const [userName, setUserName] = useState('');
+    const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [birthDate, setBirthDate] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
-    const [password, setPassword] = useState('');
+    const [birthDate, setBirthDate] = useState('');
     const [loading, setLoading] = useState(false);
 
     const handleRegister = async () => {
         try {
             const response = await axios.post('http://127.0.0.1:8080/login/register', {
+                username: userName,
+                password: password,
                 firstName: firstName,
                 lastName: lastName,
-                birthDate: birthDate,
                 email: email,
                 phone: phone,
-                password: password,
+                birthDate: birthDate,
             });
             // Check if the registration was successful
             if (response.data.success) {

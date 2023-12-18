@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Styles } from '../Styles/Stylesheet';
+import axios from 'axios';
 
 const ProductScreen = ({ productId }) => {
     const [product, setProduct] = useState(null);
@@ -10,7 +11,7 @@ const ProductScreen = ({ productId }) => {
         // API call to fetch product details by productId
         const fetchProductDetails = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:8080/products/{productID}`);
+                const response = await axios.get(`http://127.0.0.1:8080/products/${productID}`);
                 if (!response.ok) {
                     throw new Error(`Failed to fetch product details: ${response.status}`);
                 }

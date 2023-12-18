@@ -30,15 +30,14 @@ const Styles = StyleSheet.create({
         },
     },
     imageStyle:{
-        width: 100,
-        height: 100,
+        width: 200,
+        height: 200,
         marginRight: 10,
     },
     searchStyles: {
         container: {
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'space-between',
             marginBottom: 16,
             paddingHorizontal: 16,
         },

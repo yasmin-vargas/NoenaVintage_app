@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Alert, TouchableOpacity} from 'react-native';
+import { View, Text, Image, Alert, TouchableOpacity} from 'react-native';
 import { Styles } from '../Styles/Stylesheet';
 import axios from 'axios';
 
 function WishListScreen({ route, navigation }) {
     const { productID } = route.params || {};
+    const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         // Fetch the product details when the component mounts
-        fetchProductById(productID);
+        fetchProductByID(productID);
     }, [productID]);
 
-    const fetchProductById = async (productID) => {
+    const fetchProductByID = async (productID) => {
         try {
             const response = await axios.get(`http://127.0.0.1:8080/products/get/${productID}`);
             if (response.status === 200) {
@@ -28,25 +29,23 @@ function WishListScreen({ route, navigation }) {
 
     const addToBag = async (productID) => {
         setLoading(true);
+
+        // Hardcoded product for testing
+        const testProduct = {
+            productID: 'Product ID',
+            productName: 'Product Name',
+            productBrand: 'Product Brand',
+            productPrice: 'Product Price',
+            productColour: 'Product Colour',
+            productSize: 'Product Size',
+            BagItemQty: 1,
+        };
+
         try {
-            const response = await axios.get(`http://127.0.0.1:8080/shoppingbags/addToBag/${productID}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    productID: 'Product ID',
-                    productName: 'Product Name',
-                    productBrand: 'Product Brand',
-                    productPrice: 'Product Price',
-                    productColour: 'Product Colour',
-                    productSize: 'Product Size',
-                    BagItemQty: 1,
-                }),
-            });
+            const response = await axios.post(`http://127.0.0.1:8080/shoppingbags/addToBag/${productID}`, testProduct);
 
             // Check if the request was successful
-            if (response.ok) {
+            if (response.status === 200) {
                 // Show an option to redirect to the ShoppingBagScreen
                 Alert.alert(
                     'Item Added',
@@ -74,8 +73,13 @@ function WishListScreen({ route, navigation }) {
     };
 
     return (
-        <View style={Styles.formStyles}>
-            <Text style ={Styles.textStyles.text}>See your favorite items here!</Text>
+        <View style={Styles.productStyles.container}>
+            <Text style={Styles.textStyles.text}>See your favorite items here!</Text>
+            {/* Display product image if available */}
+            {product && product.productImageURL && (
+                <Image source={{ uri: product.productImageURL }} style={Styles.imageStyle} />
+            )}
+
             <TouchableOpacity style={Styles.formStyles.button} onPress={() => addToBag(40000082)} disabled={loading}>
                 <Text style={Styles.formStyles.buttonText}>
                 {loading ? 'Adding...' : 'Add to Shopping Bag'}

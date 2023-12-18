@@ -29,7 +29,7 @@ function SearchScreen({ navigation }) {
     };
 
     return (
-        <ScrollView style={Styles.formStyles}>
+        <ScrollView contentContainerStyle={Styles.productStyles.container}>
             <View style={Styles.searchContainer}>
                 <TextInput
                     style={Styles.searchInput}

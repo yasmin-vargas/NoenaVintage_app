@@ -75,19 +75,19 @@ function TabNavigator() {
 function HomeStackNavigator() {
     return (
         <HomeStack.Navigator>
-            <HomeStack.Screen name="Home" component={HomeScreen} />
-            <HomeStack.Screen name="Login" component={LoginScreen} />
-            <HomeStack.Screen name="Register" component={RegisterScreen} />
+            <HomeStack.Screen name="Home Screen" component={HomeScreen} />
+            <HomeStack.Screen name="Login Screen" component={LoginScreen} />
+            <HomeStack.Screen name="Register Screen" component={RegisterScreen} />
         </HomeStack.Navigator>
     )
 }
 function SearchStackNavigator() {
   return (
     <SearchStack.Navigator>
-      <SearchStack.Screen name="Search Category" component={SearchScreen} />
-      <SearchStack.Screen name="Vintage" component={VintageScreen} />
-      <SearchStack.Screen name="Repro" component={ReproScreen} />
-      <SearchStack.Screen name="Category" component={CategoryScreen} />
+      <SearchStack.Screen name="Search Screen" component={SearchScreen} />
+      <SearchStack.Screen name="Vintage Screen" component={VintageScreen} />
+      <SearchStack.Screen name="Repro Screen" component={ReproScreen} />
+      <SearchStack.Screen name="Category Screen" component={CategoryScreen} />
     </SearchStack.Navigator>
   )
 }
@@ -95,8 +95,8 @@ function SearchStackNavigator() {
 function WishListStackNavigator() {
     return (
         <WishListStack.Navigator>
-            <WishListStack.Screen name="Wish List" component={WishListScreen} />
-            <WishListStack.Screen name="ShoppingBag" component={ShoppingBagScreen} />
+            <WishListStack.Screen name="Wish List Screen" component={WishListScreen} />
+            <WishListStack.Screen name="Shopping Bag Screen" component={ShoppingBagScreen} />
         </WishListStack.Navigator>
     )
 }
@@ -104,8 +104,8 @@ function WishListStackNavigator() {
 function ShoppingBagStackNavigator() {
     return (
         <ShoppingBagStack.Navigator>
-            <ShoppingBagStack.Screen name="ShoppingBag" component={ShoppingBagScreen} />
-            <ShoppingBagStack.Screen name="Checkout" component={CheckoutScreen} />
+            <ShoppingBagStack.Screen name="Shopping Bag Screen" component={ShoppingBagScreen} />
+            <ShoppingBagStack.Screen name="Checkout Screen" component={CheckoutScreen} />
         </ShoppingBagStack.Navigator>
     )
 }
@@ -113,7 +113,7 @@ function ShoppingBagStackNavigator() {
 function MyAccountStackNavigator() {
     return (
         <MyAccountStack.Navigator>
-            <MyAccountStack.Screen name="My Account" component={AccountScreen} />
+            <MyAccountStack.Screen name="My Account Screen" component={AccountScreen} />
             <MyAccountStack.Screen name="Order History" component={OrderHistoryScreen} />
             <MyAccountStack.Screen name="Return History" component={ReturnHistoryScreen} />
         </MyAccountStack.Navigator>

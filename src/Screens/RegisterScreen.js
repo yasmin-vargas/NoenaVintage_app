@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Button, Alert } from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Alert, ActivityIndicator} from 'react-native';
 import { Styles } from '../Styles/Stylesheet';
 import axios from 'axios';
 
@@ -10,17 +10,17 @@ function RegisterScreen({ navigation }) {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleRegister = async () => {
         try {
-            //Make a request to backend for user registration
-            const response = await axios.post('https://noenavintagedk.ew.r.appspot.com/users/post', {
+            const response = await axios.post('http://127.0.0.1:8080/login/register', {
                 firstName: firstName,
                 lastName: lastName,
                 birthDate: birthDate,
                 email: email,
                 phone: phone,
-                password: userPassword,
+                password: password,
             });
             // Check if the registration was successful
             if (response.data.success) {
@@ -32,6 +32,8 @@ function RegisterScreen({ navigation }) {
         } catch (error) {
             console.error('Error during registration:', error);
             Alert.alert('Error', 'Failed to register. Please try again.');
+        } finally {
+            setLoading(false);  // Set loading back to false after the request is completed
         }
     };
 
@@ -79,6 +81,13 @@ function RegisterScreen({ navigation }) {
             >
                 <Text style={Styles.formStyles.buttonText}>Register now</Text>
             </TouchableOpacity>
+
+            {loading && (
+                <View style={Styles.formStyles.container}>
+                    <ActivityIndicator size="large" color="#0000ff" />
+                    <Text style={Styles.textStyles.Text}>Creating an account...</Text>
+                </View>
+            )}
         </View>
     );
 }

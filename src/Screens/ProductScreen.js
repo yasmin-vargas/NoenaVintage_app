@@ -10,7 +10,7 @@ const ProductScreen = ({ productId }) => {
         // API call to fetch product details by productId
         const fetchProductDetails = async () => {
             try {
-                const response = await fetch(`https://noenavintagedk.ew.r.appspot.com/products/{productId}`);
+                const response = await fetch(`http://127.0.0.1:8080/products/{productID}`);
                 if (!response.ok) {
                     throw new Error(`Failed to fetch product details: ${response.status}`);
                 }
@@ -22,7 +22,7 @@ const ProductScreen = ({ productId }) => {
             }
         };
         fetchProductDetails();  // Call the function to initiate the API call
-    }, [productId]);  // Dependency array outside the function body
+    }, [productID]);  // Dependency array outside the function body
 
     if (!product) {
         return <Text>Loading...</Text>;
@@ -34,15 +34,16 @@ const ProductScreen = ({ productId }) => {
 
     return (
         <View>
-            <Text>{product.productName}</Text>
-            <Text>{product.productBrand}</Text>
-            <Text>{product.productDescription}</Text>
+            <Text style={Styles.productStyles.productName}>{product.productName}</Text>
+            <Text style={Styles.productStyles.productBrand}>{product.productBrand}</Text>
+            <Text style={Styles.productStyles.productPrice}>{product.productPrice}</Text>
+            <Text style={Styles.productStyles.productDescription}>{product.productDescription}</Text>
 
             {/* Gallery */}
             <ScrollView horizontal>
                 {product.images.map((image) => (
                     <TouchableOpacity
-                        key={image.imageId}
+                        key={image.imageID}
                         onPress={() => handleImageClick(image)}
                     >
                         <Image
@@ -54,9 +55,8 @@ const ProductScreen = ({ productId }) => {
             </ScrollView>
 
             {/* Selected Image */}
-            <Image
+            <Image style={Styles.productStyles.productDetailsImage}
                 source={{ uri: selectedImage ? selectedImage.imageUrl : '' }}
-                style={{ width: '100%', height: 300 }}
             />
         </View>
     );

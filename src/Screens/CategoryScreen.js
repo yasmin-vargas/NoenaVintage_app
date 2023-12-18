@@ -19,13 +19,13 @@ function AttributeFilters({ attributeTypes, selectedAttributes, onSelect }) {
 }
 
 const CategoryScreen = ({ route, navigation }) => {
-    const { category } = route.params;
+    const { category } = route.params || {};
     const [products, setProducts] = useState([]);
     const [attributes, setAttributes] = useState([]);
     const [selectedAttributes, setSelectedAttributes] = useState([]);
 
     useEffect(() => {  // Fetch products for the selected category
-        axios.get('https://noenavintagedk.ew.r.appspot.com/products/searchProducts/${category}')
+        axios.get(`http://127.0.0.1:8080/products/searchProduct/${category}`)
             .then(response => {
                 setProducts(response.data);
             })
@@ -38,7 +38,7 @@ const CategoryScreen = ({ route, navigation }) => {
 
     const fetchAttributes = async () => {
         try {
-            const response = await axios.get('https://noenavintagedk.ew.r.appspot.com/attributes/getAllAttributes');
+            const response = await axios.get('http://127.0.0.1:8080/attributes/getAllAttributes');
             setAttributes(response.data); // assuming the response is an array of attributes
         } catch (error) {
             console.error('Error fetching attributes:', error);

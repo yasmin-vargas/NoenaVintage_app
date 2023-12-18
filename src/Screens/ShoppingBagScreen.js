@@ -9,7 +9,7 @@ function ShoppingBagScreen({ navigation }) {
     useEffect(() => {  // Fetch bagitems for ShoppingBag based on UserID
         const fetchShoppingBagItems = async () => {
             try {
-                const response = await axios.get(`https://noenavintagedk.ew.r.appspot.com/shoppingbag/bagitems`);
+                const response = await axios.get(`http://127.0.0.1:8080/shoppingbags/bagItems/${userID}`);
                 setBagItems(response.data);
             } catch (error) {
                 console.error('Error fetching shopping bag items:', error);
@@ -32,7 +32,7 @@ function ShoppingBagScreen({ navigation }) {
             ))}
             <TouchableOpacity
                 style={Styles.formStyles.button}
-                onPress={() => navigation.navigate('Checkout')}
+                onPress={() => navigation.navigate('Checkout Screen')}
             >
                 <Text style={Styles.formStyles.buttonText}>Checkout</Text>
             </TouchableOpacity>

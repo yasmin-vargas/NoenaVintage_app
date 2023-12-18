@@ -1,25 +1,47 @@
-import React, { useState } from 'react';
-import {View, Text, Button, Alert, TouchableOpacity} from 'react-native';
-import {Styles } from '../Styles/Stylesheet';
-function WishListScreen({ navigation }) {
+import React, { useState, useEffect } from 'react';
+import { View, Text, Alert, TouchableOpacity} from 'react-native';
+import { Styles } from '../Styles/Stylesheet';
+import axios from 'axios';
+
+function WishListScreen({ route, navigation }) {
+    const { productID } = route.params || {};
     const [loading, setLoading] = useState(false);
 
-    const addToBag = async () => {
+    useEffect(() => {
+        // Fetch the product details when the component mounts
+        fetchProductById(productID);
+    }, [productID]);
+
+    const fetchProductById = async (productID) => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:8080/products/get/${productID}`);
+            if (response.status === 200) {
+                const productData = response.data;
+                setProduct(productData);
+            } else {
+                console.error('Error fetching product details:', response.status);
+            }
+        } catch (error) {
+            console.error('Error fetching product details:', error);
+        }
+    };
+
+    const addToBag = async (productID) => {
         setLoading(true);
-        try {  // Make a request to your backend API to addToBag
-            const response = await fetch('https://noenavintagedk.ew.r.appspot.com/add-to-bag', {
+        try {
+            const response = await axios.get(`http://127.0.0.1:8080/shoppingbags/addToBag/${productID}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    stockID: 'stockID',
-                    productName: 'ProductName',
-                    productBrand: 'ProductBrand',
-                    stockPrice: 'stockPrice',
-                    stockColour: 'stockColour',
-                    stockSize: 'stockSize',
-                    stockQty: 1,
+                    productID: 'Product ID',
+                    productName: 'Product Name',
+                    productBrand: 'Product Brand',
+                    productPrice: 'Product Price',
+                    productColour: 'Product Colour',
+                    productSize: 'Product Size',
+                    BagItemQty: 1,
                 }),
             });
 
@@ -36,7 +58,7 @@ function WishListScreen({ navigation }) {
                         },
                         {
                             text: 'Yes',
-                            onPress: () => navigation.navigate('ShoppingBag'),
+                            onPress: () => navigation.navigate('ShoppingBag Screen'),
                         },
                     ],
                 );
@@ -54,7 +76,7 @@ function WishListScreen({ navigation }) {
     return (
         <View style={Styles.formStyles}>
             <Text style ={Styles.textStyles.text}>See your favorite items here!</Text>
-            <TouchableOpacity style={Styles.formStyles.button} onPress={addToBag} disabled={loading}>
+            <TouchableOpacity style={Styles.formStyles.button} onPress={() => addToBag(40000082)} disabled={loading}>
                 <Text style={Styles.formStyles.buttonText}>
                 {loading ? 'Adding...' : 'Add to Shopping Bag'}
                 </Text>

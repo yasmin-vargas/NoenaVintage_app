@@ -7,13 +7,18 @@ function OrderHistoryScreen ({ navigation }){
     const [orderHistory, setOrderHistory] = useState([]);
 
     useEffect(() => {
-        axios.get('https://noenavintagedk.ew.r.appspot.com/orders/history/1')
-            .then(response => {
+        const fetchOrderHistory = async () => {
+            try {
+                const response = await axios.get('http://127.0.0.1:8080/orders/history/1');
                 setOrderHistory(response.data);
-            })
-            .catch(error => {
-                console.error('Error fetching order history:', error);
-            });
+            } catch (error) {
+            console.error('Error fetching order history:', error);
+            setError('Error fetching order history. Please try again.');
+            } finally {
+            setLoading(false);
+            }
+        };
+        fetchOrderHistory();
     }, []);
 
     return(

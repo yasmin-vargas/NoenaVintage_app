@@ -1,25 +1,35 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Button, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
 import {Styles } from '../Styles/Stylesheet';
 import axios from 'axios';
+
 function LoginScreen({ navigation }) {
     const [username, setUsername] = useState('');
-    const [password, setUserPassword] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleLogin = async () => {
-        try {  // Make a request to your backend API for user authentication
-            const response = await axios.post('https://noenavintagedk.ew.r.appspot.com/users/login', {
-                username: username,
-                password: password,
-            });
-            if (response.data.success) {  // Check if the authentication was successful
-                navigation.navigate('Home');
+        // Hardcoded username and password for testing
+        const testUsername = 'NoenaAdmin';
+        const testPassword = 'Noena3000';
+
+        try {
+            setLoading(true);
+
+            // Simulate an API request delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            console.log('Attempting login with:', username, password);
+
+            if (username === testUsername && password === testPassword) {
+                console.log('Login Successful');
+                Alert.alert('Login Successful', 'You will be redirected to your Account Screen.');
+                navigation.navigate('Account Screen');
             } else {
-                Alert.alert('Login Failed', response.data.message);
+                console.log('Login Failed');
+                Alert.alert('Login Failed', 'Invalid username or password.');
             }
-        } catch (error) {
-            console.error('Error during login:', error);
-            Alert.alert('Error', 'Failed to login. Please try again.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -35,7 +45,7 @@ function LoginScreen({ navigation }) {
                 placeholder="Password"
                 secureTextEntry
                 value={password}
-                onChangeText={(text) => setUserPassword(text)}
+                onChangeText={(text) => setPassword(text)}
             />
             <TouchableOpacity
                 style={Styles.formStyles.button}
@@ -45,10 +55,17 @@ function LoginScreen({ navigation }) {
             </TouchableOpacity>
             <TouchableOpacity
                 style={Styles.formStyles.button}
-                onPress={() => navigation.navigate('Register')}
+                onPress={() => navigation.navigate('Register Screen')}
             >
                 <Text style={Styles.formStyles.buttonText}>New here? Register an account</Text>
             </TouchableOpacity>
+
+            {loading && (
+                <View style={Styles.formStyles.container}>
+                    <ActivityIndicator size="large" color="#0000ff" />
+                    <Text style={Styles.textStyles.Text}>Logging in...</Text>
+                </View>
+            )}
         </View>
     );
 }

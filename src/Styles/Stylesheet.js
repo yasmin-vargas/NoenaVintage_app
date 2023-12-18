@@ -34,6 +34,26 @@ const Styles = StyleSheet.create({
         height: 100,
         marginRight: 10,
     },
+    searchStyles: {
+        container: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginBottom: 16,
+            paddingHorizontal: 16,
+        },
+        searchInput: {
+            flex: 1,
+            height: 40,
+            borderColor: 'gray',
+            borderWidth: 1,
+            paddingHorizontal: 8,
+            marginRight: 8,
+        },
+        searchButton: {
+            padding: 8,
+        },
+    },
     productStyles: {
         container: {
             marginTop: 50,
@@ -50,11 +70,25 @@ const Styles = StyleSheet.create({
         },
         productBrand: {
             backgroundColor: colour.NoenaGreen,
-            fontSize: 14,
+            fontSize: 16,
         },
         productPrice: {
             color: colour.Black,
             fontSize: 14,
+        },
+        productDescription: {
+            color: colour.Black,
+            fontSize: 12,
+        },
+        productImage: {
+            width: '100%',
+            aspectRatio: 1,
+            maxHeight: 100
+        },
+        productDetailsImage: {
+            width: '100%',
+            aspectRatio: 1,
+            maxHeight: 300
         },
     },
     formStyles: {
@@ -62,7 +96,7 @@ const Styles = StyleSheet.create({
             width: '80%',
             marginTop: 50,
             alignSelf: 'center',
-            backgroundColor: colour.NoenaRose,
+            backgroundColor: colour.White,
             padding: 10,
             borderRadius: 10,
             alignItems: 'center',

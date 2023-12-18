@@ -7,7 +7,7 @@ function ReturnHistoryScreen ({ navigation }){
     const [returnHistory, setReturnHistory] = useState([]);
 
     useEffect(() => {
-        axios.get('https://noenavintagedk.ew.r.appspot.com/returns/history/1')
+        axios.get('http://127.0.0.1:8080/returns/history/{1}')
             .then(response => {
                 setReturnHistory(response.data);
             })

@@ -42,7 +42,11 @@ function WishListScreen({ route, navigation }) {
         };
 
         try {
-            const response = await axios.post(`http://127.0.0.1:8080/shoppingbags/addToBag/${productID}`, testProduct);
+            const response = await axios.post(`http://127.0.0.1:8080/shoppingbags/addToBag/${productID}`, testProduct, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
 
             // Check if the request was successful
             if (response.status === 200) {

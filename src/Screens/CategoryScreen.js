@@ -26,13 +26,21 @@ const CategoryScreen = ({ route, navigation }) => {
     const [selectedAttributes, setSelectedAttributes] = useState([]);
 
     useEffect(() => {  // Fetch products for the selected category
-        axios.get(`http://127.0.0.1:8080/products/searchProduct/${category}`)
+        axios.get(`http://127.0.0.1:8080/products/searchProduct/${category}`,{
+            headers: {
+            Accept: 'application/json',
+            },
+        })
             .then(response => {
                 setProducts(response.data);
             })
             .catch(error => {
                 console.error(`Error fetching products for ${category}:`, error);
+                if (error.response && error.response.data) {
+                    console.error('Response data:', error.response.data);
+                }
             });
+
         fetchAttributes();  // Fetch attributes
     }, [category]);
 
@@ -59,8 +67,7 @@ const CategoryScreen = ({ route, navigation }) => {
         ))
     ));
 
-    const handleProductPress = (product) => {
-        // Navigate to ProductScreen and pass the selected product
+    const handleProductPress = (product) => {  // Navigate to ProductScreen and pass the selected product
         navigation.navigate('Product Screen', { product });
     };
 

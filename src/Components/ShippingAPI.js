@@ -36,5 +36,4 @@ const ShippingAPI = ({ shipmentData }) => {
 };
 
 export default ShippingAPI;
-
 */
